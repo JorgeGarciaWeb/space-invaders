@@ -28,17 +28,12 @@ const ratsAttack = {
         this.ctx = document.querySelector(canvasId).getContext("2d")
         this.scorePlayer = document.querySelector("#scoreTotal")
         this.livesTotal = document.querySelector('#livesTotal')
-        // this.music = new Audio("./sound/musicGame.mp3")
-        // this.music.play()
-        // this.music.loop = true
-        // this.music.volumen = 1
         this.setDimensions(canvasId)
         this.setEventListeners()
         this.createPlayer()
         this.createEnemies()
         this.drawAll()
         this.resetPlayer()
-
     },
 
     //Dimensions
@@ -115,7 +110,7 @@ const ratsAttack = {
 
 
 
-        // // //Enemies row two
+        // // // //Enemies row two
 
         this.enemies.push(new Octopus(this.ctx, 50, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 100, 170, 40, 1, 1, this.gameSize))
@@ -130,7 +125,7 @@ const ratsAttack = {
         this.enemies.push(new Octopus(this.ctx, 550, 170, 40, 1, 1, this.gameSize))
 
 
-        // // //Enemies row three
+        // // // //Enemies row three
 
         this.enemies.push(new Piton(this.ctx, 50, 270, 40, 1, 1, this.gameSize))
         this.enemies.push(new Piton(this.ctx, 100, 270, 40, 1, 1, this.gameSize))
@@ -144,19 +139,7 @@ const ratsAttack = {
         this.enemies.push(new Piton(this.ctx, 500, 270, 40, 1, 1, this.gameSize))
         this.enemies.push(new Piton(this.ctx, 550, 270, 40, 1, 1, this.gameSize))
 
-        // // //Enemies row three
 
-        this.enemies.push(new Octopus(this.ctx, 50, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 100, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 150, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 200, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 250, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 300, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 350, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 400, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 450, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 500, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 550, 370, 40, 1, 1, this.gameSize))
     },
 
     //DrawAll
@@ -183,8 +166,18 @@ const ratsAttack = {
                 elmBullets.draw()
                 this.clearBulletEnemies()
             })
+            if (this.enemies.length === 0) {
+
+
+                this.ctx.font = "50px Audiowide"
+                this.ctx.fillStyle = 'white';
+                this.ctx.textAlign = "center"
+                this.ctx.textBaseline = "middle"
+                this.ctx.fillText("You win!", window.innerWidth / 2, window.innerHeight / 2)
+            }
 
             this.enemies.forEach((elm) => {
+
                 elm.move()
                 elm.draw()
                 this.clearOctopus()
@@ -237,8 +230,7 @@ const ratsAttack = {
                     elmEnemy.positionEnemy.x + elmEnemy.enemySize.w > elmBullet.bulletPos.x &&
                     elmEnemy.positionEnemy.y < elmBullet.bulletPos.y + elmBullet.bulletSize.h &&
                     elmEnemy.enemySize.h + elmEnemy.positionEnemy.y > elmBullet.bulletPos.y) {
-                    this.score += 25
-                    console.log(this.score)
+                    this.score += 10
                     this.scorePlayer.innerHTML = this.score
                     const enemiesRemove = this.enemies.indexOf(elmEnemy)
                     this.enemies.splice([enemiesRemove], 1)
@@ -259,9 +251,14 @@ const ratsAttack = {
                 this.playerRat.positionPlayer.x + this.playerRat.playerSize.w > elem.bulletEnemiesPos.x &&
                 this.playerRat.positionPlayer.y < elem.bulletEnemiesPos.y + elem.bulletEnemiesSize.h &&
                 this.playerRat.playerSize.h + this.playerRat.positionPlayer.y > elem.bulletEnemiesPos.y) {
+
+                this.music = new Audio("./sound/madao.mp3")
+                this.music.play()
+                this.music.volumen = 1
                 this.lives--
                 this.livesTotal.innerHTML = this.lives
                 this.removeBullet(idx)
+
 
 
             }
@@ -277,6 +274,12 @@ const ratsAttack = {
                 elm.positionEnemy.y < this.playerRat.positionPlayer.y + this.playerRat.playerSize.h &&
                 elm.enemySize.h + elm.positionEnemy.y > this.playerRat.positionPlayer.y) {
 
+                this.ctx.font = "50px Audiowide"
+                this.ctx.fillStyle = 'white';
+                this.ctx.textAlign = "center"
+                this.ctx.textBaseline = "middle"
+                this.ctx.fillText("GAME OVER!", window.innerWidth / 2, window.innerHeight / 2);
+                clearInterval(intervalId)
             }
         })
     },

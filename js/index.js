@@ -1,8 +1,17 @@
-// const startGame = document.querySelector("button")
-// const canvas = document.querySelector(".hidden")
+window.onload = () => {
+    document.getElementById('start').onclick = () => {
 
-// startGame.addEventListener('click', () => {
-//     canvas.setAttribute('class', 'showing')
-//     document.activeElement.blur()
-//     ratsAttack.gameInit()
-// })
+
+        document.querySelector(".start-button").setAttribute('class', 'start-button hidden')
+        document.getElementById('score1').classList.toggle('hidden')
+        document.querySelector('canvas').classList.toggle('hidden')
+
+        startGame();
+
+    };
+
+    function startGame() {
+
+        ratsAttack.init()
+    }
+};

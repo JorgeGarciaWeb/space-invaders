@@ -24,6 +24,6 @@ class Cheese {
     }
 
     moveUp() {
-        this.bulletPos.y -= 10
+        this.bulletPos.y -= 3
     }
 }

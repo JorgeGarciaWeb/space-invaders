@@ -65,7 +65,7 @@ class Piton {
     constructor(ctx, posX, posY, enemyImg, speed, damage, gameSize) {
         this.ctx = ctx
         this.positionEnemy = { x: posX, y: posY }
-        this.enemySize = { w: 80, h: 80 }
+        this.enemySize = { w: 50, h: 50 }
         this.enemiesSpeed = speed
         this.damage = damage
         this.enemyImg = enemyImg

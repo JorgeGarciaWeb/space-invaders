@@ -12,15 +12,17 @@
 
 <body>
 
-    <!-- <div class="start-button">
-        
-                <div class="info">
-                    <img src="img/posit.png" alt="">
-                    <button>Start the Game madafaka</button>
-                </div>
-            </div> -->
+    <!--Create start screen-->
+    <section class="start-button">
 
-    <section>
+        <p class="text">Rats Attack</p>
+        <p class="text-player1"> > Player 1</p>
+        <p class="text-player2">Player 2</p>
+        <button class="center-button" id="start" onclick()>Start</button>
+
+    </section>
+
+    <section id="score1" class="hidden">
         <p id="score">
             <span>Score:</span> <span id="scoreTotal">0</span>
             <br>
@@ -29,10 +31,11 @@
     </section>
 
 
-
-
     <!--Create id canvas-->
+
     <canvas class="hidden" id="canvas"></canvas>
+
+
     <!--Script-->
     <script type="text/javascript" src="./js/bulletEnemies.js"></script>
     <script type="text/javascript" src="js/enemies.js"></script>
@@ -40,6 +43,7 @@
     <script type="text/javascript" src="js/player.js"></script>
     <script type="text/javascript" src="js/background.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
 
 

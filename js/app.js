@@ -20,6 +20,7 @@ const ratsAttack = {
     score: 0,
     scorePlayer: undefined,
     FPS: 60,
+    music: undefined,
     collindingBulletIdx: false,
     background: undefined,
     init(canvasId) {
@@ -27,6 +28,10 @@ const ratsAttack = {
         this.ctx = document.querySelector(canvasId).getContext("2d")
         this.scorePlayer = document.querySelector("#scoreTotal")
         this.livesTotal = document.querySelector('#livesTotal')
+        // this.music = new Audio("./sound/musicGame.mp3")
+        // this.music.play()
+        // this.music.loop = true
+        // this.music.volumen = 1
         this.setDimensions(canvasId)
         this.setEventListeners()
         this.createPlayer()
@@ -41,7 +46,7 @@ const ratsAttack = {
 
         this.gameSize = {
             w: window.innerWidth,
-            h: window.innerHeight
+            h: window.innerHeight - 150
         }
         document.querySelector(canvasId).setAttribute("width", this.gameSize.w)
         document.querySelector(canvasId).setAttribute("height", this.gameSize.h)
@@ -77,7 +82,7 @@ const ratsAttack = {
     resetPlayer() {
 
         this.playerRat.positionPlayer.x = this.gameSize.w / 2
-        this.playerRat.positionPlayer.y = this.gameSize.h - 75
+        this.playerRat.positionPlayer.y = this.gameSize.h - 85
     },
 
 
@@ -85,61 +90,73 @@ const ratsAttack = {
     createEnemies() {
 
         //Enemies row one
+        this.enemies.push(new Octopus(this.ctx, 50, 20, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 100, 20, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 150, 20, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 200, 20, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 250, 20, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 300, 20, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 350, 20, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 400, 20, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 450, 20, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 500, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 600, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 700, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 800, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 900, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1000, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1100, 20, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 1200, 20, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 550, 20, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 50, 90, 80, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 100, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 150, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 200, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 250, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 300, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 350, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 400, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 450, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 500, 90, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 550, 90, 40, 1, 1, this.gameSize))
+
 
 
         // // //Enemies row two
 
+        this.enemies.push(new Octopus(this.ctx, 50, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 100, 170, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 150, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 200, 170, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 250, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 300, 170, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 350, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 400, 170, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 450, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 500, 170, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 600, 170, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 700, 170, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 800, 170, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 900, 170, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1000, 170, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1100, 170, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 550, 170, 40, 1, 1, this.gameSize))
+
 
         // // //Enemies row three
 
-        this.enemies.push(new Octopus(this.ctx, 100, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 200, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 300, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 400, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 500, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 600, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 700, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 800, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 900, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1000, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1100, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 50, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 100, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 150, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 200, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 250, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 300, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 350, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 400, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 450, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 500, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 550, 270, 40, 1, 1, this.gameSize))
 
         // // //Enemies row three
 
+        this.enemies.push(new Octopus(this.ctx, 50, 370, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 100, 370, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 150, 370, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 200, 370, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 250, 370, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 300, 370, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 350, 370, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 400, 370, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 450, 370, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 500, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 600, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 700, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 800, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 900, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1000, 370, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Octopus(this.ctx, 1100, 370, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Octopus(this.ctx, 550, 370, 40, 1, 1, this.gameSize))
     },
 
     //DrawAll
@@ -275,6 +292,12 @@ const ratsAttack = {
     gameOver() {
 
         if (this.lives <= 0) {
+
+            this.ctx.font = "50px Audiowide"
+            this.ctx.fillStyle = 'white';
+            this.ctx.textAlign = "center"
+            this.ctx.textBaseline = "middle"
+            this.ctx.fillText("GAME OVER!", window.innerWidth / 2, window.innerHeight / 2);
             clearInterval(intervalId)
         }
     }

@@ -1,0 +1,19 @@
+body {
+
+    background-image: url(../img/fondUp.jpeg);
+    font-family: "Audiowide", sans-serif;
+
+}
+
+#score {
+
+    background-color: #8188b8;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 400;
+    width: 200px;
+    padding-left: 4px;
+    margin-top: 60px;
+    margin-left: 40px;
+
+}

@@ -1,0 +1,1 @@
+ratsAttack.init("#canvas")

@@ -43,6 +43,7 @@ const ratsAttack = {
             w: window.innerWidth,
             h: window.innerHeight - 150
         }
+        console.log(this.gameSize.h)
         document.querySelector(canvasId).setAttribute("width", this.gameSize.w)
         document.querySelector(canvasId).setAttribute("height", this.gameSize.h)
     },
@@ -110,7 +111,7 @@ const ratsAttack = {
 
 
 
-        // // // //Enemies row two
+        // // // // //Enemies row two
 
         this.enemies.push(new Octopus(this.ctx, 50, 170, 40, 1, 1, this.gameSize))
         this.enemies.push(new Octopus(this.ctx, 100, 170, 40, 1, 1, this.gameSize))
@@ -125,19 +126,19 @@ const ratsAttack = {
         this.enemies.push(new Octopus(this.ctx, 550, 170, 40, 1, 1, this.gameSize))
 
 
-        // // // //Enemies row three
+        // // // // //Enemies row three
 
-        this.enemies.push(new Piton(this.ctx, 50, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 100, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 150, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 200, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 250, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 300, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 350, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 400, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 450, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 500, 270, 40, 1, 1, this.gameSize))
-        this.enemies.push(new Piton(this.ctx, 550, 270, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 50, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 100, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 150, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 200, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 250, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 300, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 350, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 400, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 450, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 500, 250, 40, 1, 1, this.gameSize))
+        this.enemies.push(new Piton(this.ctx, 550, 250, 40, 1, 1, this.gameSize))
 
 
     },
@@ -166,14 +167,21 @@ const ratsAttack = {
                 elmBullets.draw()
                 this.clearBulletEnemies()
             })
-            if (this.enemies.length === 0) {
 
+            if (this.enemies.length === 0) {
 
                 this.ctx.font = "50px Audiowide"
                 this.ctx.fillStyle = 'white';
                 this.ctx.textAlign = "center"
                 this.ctx.textBaseline = "middle"
-                this.ctx.fillText("You win!", window.innerWidth / 2, window.innerHeight / 2)
+                this.ctx.fillText("Mission passed!", window.innerWidth / 2, window.innerHeight / 2)
+
+                this.ctx.font = "50px Audiowide"
+                this.ctx.fillStyle = 'Brown';
+                this.ctx.textAlign = "center"
+                this.ctx.textBaseline = "middle"
+                this.ctx.fillText("respect +", window.innerWidth / 2, window.innerHeight / 2 + 50)
+
             }
 
             this.enemies.forEach((elm) => {
@@ -230,6 +238,10 @@ const ratsAttack = {
                     elmEnemy.positionEnemy.x + elmEnemy.enemySize.w > elmBullet.bulletPos.x &&
                     elmEnemy.positionEnemy.y < elmBullet.bulletPos.y + elmBullet.bulletSize.h &&
                     elmEnemy.enemySize.h + elmEnemy.positionEnemy.y > elmBullet.bulletPos.y) {
+
+                    this.music = new Audio("./sound/shipEnemy.mp3")
+                    this.music.play()
+                    this.music.volumen = 1
                     this.score += 10
                     this.scorePlayer.innerHTML = this.score
                     const enemiesRemove = this.enemies.indexOf(elmEnemy)

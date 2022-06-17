@@ -5,6 +5,8 @@ body {
     margin: 0;
 }
 
+
+
 .text-player1 {
     color: white;
     display: grid;
@@ -50,7 +52,7 @@ body {
 }
 
 button:hover {
-    background: linear-gradient(180deg, #65bce8 0%, #306485 100%);
+    background: linear-gradient(180deg, #65bce8 0%, #266993 100%);
 }
 
 .text {

@@ -10,6 +10,7 @@ window.onload = () => {
         this.music.play()
         this.music.loop = true
         this.music.volumen = 1
+
         startGame();
 
     };
